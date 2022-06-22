@@ -10,7 +10,7 @@ function AboutPage(props) {
         <p>Version: 1.0.0</p>
 
         <p>
-          <Link to="/">Ana Sayfaya Geri Don</Link>
+          <Link to="/">Geri Don</Link>
         </p>
       </div>
     </Card>
