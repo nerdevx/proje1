@@ -62,14 +62,14 @@ function FeedbackForm() {
   return (
     <Card>
       <form onSubmit={handleSubmit}>
-        <h2>Aldiginiz hizmetten memnun kaldiniz mi?</h2>
+        <h2>Tespitini yaz</h2>
         <RatingSelect select={setRating} selected={rating} />
         <div className="input-group">
           <input
             value={text}
             onChange={handleChange}
             type="text"
-            placeholder="Goruslerinizi yazinizzzz"
+            placeholder="Yaz ve tespit et"
           />
           <Button isDisabled={btnDisabled} version="primary" type="submit">
             Gonder

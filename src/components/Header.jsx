@@ -15,7 +15,7 @@ function Header({ text, bgColor, textColor }) {
 }
 
 Header.defaultProps = {
-  text: "Feedback UI",
+  text: "Vurbook",
   bgColor: "rgba(0,0,0,0.4)",
   textColor: "#4267B2",
 };

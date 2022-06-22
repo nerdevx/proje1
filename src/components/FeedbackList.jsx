@@ -8,7 +8,7 @@ function FeedbackList() {
   const { feedback } = useContext(FeedbackContext);
 
   if (!feedback || feedback.length === 0) {
-    return <Card>No feedback Yet</Card>; // Item olmadigi zaman icin olusturdugumuz Card Componenti kullanmis olduk.
+    return <Card>Henuz gonderi olusturulmadi</Card>; // Item olmadigi zaman icin olusturdugumuz Card Componenti kullanmis olduk.
   }
 
   return (
