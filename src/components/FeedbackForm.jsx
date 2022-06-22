@@ -69,7 +69,7 @@ function FeedbackForm() {
             value={text}
             onChange={handleChange}
             type="text"
-            placeholder="Goruslerinizi yaziniz"
+            placeholder="Goruslerinizi yazinizzzz"
           />
           <Button isDisabled={btnDisabled} version="primary" type="submit">
             Gonder
