@@ -25,14 +25,23 @@ export const FeedbackProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  // set delete feedback
+  // set deletefeedback
 
-  const deleteFeedback = (id) => {
-    if (window.confirm("Emin misin")) {
-      setfeedback(feedback.filter((item) => item.id !== id));
+  const deleteFeedback = async (id) => {
+    if (window.confirm("Gonderiyi silmek istediginizden emin misiniz?")) {
+      const response = await fetch(`/feedback/${id}`, {
+        method: "DELETE", // or "PUT"
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+
+      setfeedback(data);
     }
-  };
 
+    setfeedback(feedback.filter((item) => item.id !== id));
+  };
   //add feedback
 
   const addFeedback = async (newFeedback) => {
@@ -57,9 +66,16 @@ export const FeedbackProvider = ({ children }) => {
 
   // Update Feedback item
 
-  const updateFeedback = (id, updItem) => {
+  const updateFeedback = async (id, updItem) => {
+    const response = await fetch(`/feedback/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updItem),
+    });
+    const data = await response.json();
+
     setfeedback(
-      feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+      feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
     ); // for each item in the list if the id is equal to the id of the item we want to update then we want to update the item with the new item
   };
 

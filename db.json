@@ -1,14 +1,14 @@
 {
   "feedback": [
     {
-      "id": "2",
-      "rating": "5",
-      "text": "This is feedback item 2 coming from the backend"
+      "text": "Muhammed Ciftci",
+      "rating": 8,
+      "id": 1
     },
     {
-      "id": "3",
-      "rating": "8",
-      "text": "This is feedback item 3 coming from the backend"
+      "text": "Deneme puan ",
+      "rating": 1,
+      "id": 2
     }
   ],
   "mal": [
