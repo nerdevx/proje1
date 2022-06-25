@@ -1,23 +1,29 @@
-import React, { createContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid"; /// using for new obj id
+import React, { createContext, useState, useEffect } from "react";
 
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
-  const [feedback, setfeedback] = useState([
-    {
-      id: 1,
-      text: "Denemelik Tespit",
-      rating: 10,
-    },
-  ]);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [feedback, setfeedback] = useState([]);
   const [editFb, seteditFb] = useState([
     {
       item: {},
       edit: false,
     },
   ]);
+
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+
+  const fetchFeedback = async () => {
+    const response = await fetch(`/feedback?_sort=_id&_order=desc`);
+
+    const data = await response.json();
+
+    setfeedback(data);
+    setIsLoading(false);
+  };
 
   // set delete feedback
 
@@ -27,12 +33,18 @@ export const FeedbackProvider = ({ children }) => {
     }
   };
 
-  //add feed back
+  //add feedback
 
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4(); // unique id for the new submitted object
+  const addFeedback = async (newFeedback) => {
+    const response = await fetch("/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newFeedback),
+    });
 
-    setfeedback([newFeedback, ...feedback]); //  for curr fb ... new fb set with the spread opr.  so we can add new feedback to the list
+    const data = await response.json();
+
+    setfeedback([data, ...feedback]); //  for curr fb ... new fb set with the spread opr.  so we can add new feedback to the list
   };
 
   // set edit fb
@@ -60,6 +72,7 @@ export const FeedbackProvider = ({ children }) => {
         editFeedback,
         editFb,
         updateFeedback,
+        isLoading,
       }}
     >
       {children}
