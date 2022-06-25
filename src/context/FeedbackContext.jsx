@@ -12,6 +12,10 @@ export const FeedbackProvider = ({ children }) => {
     },
   ]);
 
+  const sleep = (milliseconds) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  };
+
   useEffect(() => {
     fetchFeedback();
   }, []);
@@ -20,7 +24,7 @@ export const FeedbackProvider = ({ children }) => {
     const response = await fetch(`/feedback?_sort=_id&_order=desc`);
 
     const data = await response.json();
-
+    await sleep(400);
     setfeedback(data);
     setIsLoading(false);
   };
